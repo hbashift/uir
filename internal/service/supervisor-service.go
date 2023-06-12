@@ -1,14 +1,14 @@
 package service
 
 import (
-	"github.com/hbashift/uir/internal/domain"
+	"github.com/google/uuid"
 	"github.com/hbashift/uir/internal/domain/entity/supervisor"
 	"github.com/hbashift/uir/internal/domain/repository"
 )
 
 type SupervisorService interface {
-	GetInfo(dto domain.SupervisorDTO) (supervisor.Info, error)
-	GetStudents(dto domain.SupervisorDTO) (supervisor.Students, error)
+	GetInfo(id uuid.UUID) (*supervisor.Info, error)
+	GetStudents(id uuid.UUID) (*supervisor.Students, error)
 	// TODO функции редактирования информации
 }
 
@@ -20,12 +20,22 @@ func NewSupervisorService(db repository.Repository) SupervisorService {
 	return &supervisorService{db: db}
 }
 
-func (s *supervisorService) GetInfo(dto domain.SupervisorDTO) (supervisor.Info, error) {
-	//TODO implement me
-	panic("implement me")
+func (s *supervisorService) GetInfo(id uuid.UUID) (*supervisor.Info, error) {
+	info, err := s.db.GetSupervisorInfo(id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return info, nil
 }
 
-func (s *supervisorService) GetStudents(dto domain.SupervisorDTO) (supervisor.Students, error) {
-	//TODO implement me
-	panic("implement me")
+func (s *supervisorService) GetStudents(id uuid.UUID) (*supervisor.Students, error) {
+	students, err := s.db.GetSupervisorsStudents(id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return students, nil
 }

@@ -1,6 +1,7 @@
 package postgres
 
 import (
+	"encoding/json"
 	"github.com/google/uuid"
 	"github.com/hbashift/uir/internal/domain/entity/student"
 )
@@ -44,7 +45,7 @@ func (p *postgresDb) GetStudentMinInfo(id uuid.UUID) (*student.MinInfo, error) {
 		return nil, err
 	}
 
-	supervisorDTO, err := p.getUser(studentDTO.SupervisorId)
+	supervisorDTO, err := p.getSupervisor(studentDTO.SupervisorId)
 
 	if err != nil {
 		return nil, err
@@ -52,7 +53,7 @@ func (p *postgresDb) GetStudentMinInfo(id uuid.UUID) (*student.MinInfo, error) {
 
 	dto = student.MinInfo{
 		Name:           studentDTO.FullName,
-		SupervisorName: supervisorDTO.Email, // TODO добавить научруку имя и тут вставлять его имя
+		SupervisorName: supervisorDTO.FullName,
 	}
 
 	return &dto, nil
@@ -73,7 +74,7 @@ func (p *postgresDb) GetStudentDissertation(id uuid.UUID) (*student.Dissertation
 		return nil, err
 	}
 
-	dissertationDTO, err := p.getDissertation(studentDTO.DissertationId)
+	dissertationDTO, err := p.getDissertation(studentDTO.StudentId)
 
 	if err != nil {
 		return nil, err
@@ -91,5 +92,25 @@ func (p *postgresDb) GetStudentDissertation(id uuid.UUID) (*student.Dissertation
 
 func (p *postgresDb) GetStudentScientificWork(id uuid.UUID) (*student.ScientifiсWork, error) {
 	var dto student.ScientifiсWork
+	studentDTO, err := p.getStudent(id)
+	// TODO Сделать нормальный вывод научных работ
+	if err != nil {
+		return nil, err
+	}
 
+	conferenceDTO, err := p.getConference(studentDTO.StudentId)
+
+	if err != nil {
+		return nil, err
+	}
+
+	b, err := json.Marshal(conferenceDTO)
+
+	if err != nil {
+		return nil, err
+	}
+
+	dto = student.ScientifiсWork{MetaInfo: string(b)}
+
+	return &dto, nil
 }

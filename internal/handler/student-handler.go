@@ -3,40 +3,81 @@ package handler
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/hbashift/uir/internal/service"
+	"net/http"
 )
-
-type StudentHandler interface {
-	GetInfo(ctx *gin.Context)
-	GetMinInfo(ctx *gin.Context)
-	GetDissertation(ctx *gin.Context)
-	GetScientificWork(ctx *gin.Context)
-	// TODO функции редактирования информации
-}
 
 type studentHandler struct {
 	service service.StudentService
 }
 
-func NewStudentHandler(service service.StudentService) StudentHandler {
-	return &studentHandler{service: service}
-}
-
 func (s *studentHandler) GetInfo(ctx *gin.Context) {
-	//TODO implement me
-	panic("implement me")
+	id, err := getUUID(ctx)
+
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	info, err := s.service.GetInfo(*id)
+
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	ctx.JSON(http.StatusOK, info)
 }
 
 func (s *studentHandler) GetMinInfo(ctx *gin.Context) {
-	//TODO implement me
-	panic("implement me")
+	id, err := getUUID(ctx)
+
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	minInfo, err := s.service.GetMinInfo(*id)
+
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	ctx.JSON(http.StatusOK, minInfo)
 }
 
 func (s *studentHandler) GetDissertation(ctx *gin.Context) {
-	//TODO implement me
-	panic("implement me")
+	id, err := getUUID(ctx)
+
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	dissertation, err := s.service.GetDissertation(*id)
+
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	ctx.JSON(http.StatusOK, dissertation)
 }
 
 func (s *studentHandler) GetScientificWork(ctx *gin.Context) {
-	//TODO implement me
-	panic("implement me")
+	id, err := getUUID(ctx)
+
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	scientificWork, err := s.service.GetScientificWork(*id)
+
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	ctx.IndentedJSON(http.StatusOK, scientificWork)
 }

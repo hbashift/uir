@@ -1,31 +1,50 @@
 package postgres
 
 import (
-	"errors"
 	"github.com/google/uuid"
 	"github.com/hbashift/uir/internal/domain/entity/supervisor"
 )
 
 func (p *postgresDb) GetSupervisorsStudents(id uuid.UUID) (*supervisor.Students, error) {
 	dto := supervisor.Students{}
-	err := p.postgres.Get(&dto, "SELECT * FROM student WHERE supervisor_id = $1", id)
+
+	students, err := p.getListStudents(id)
 
 	if err != nil {
-		dto = supervisor.Students{}
-		err = errors.New("supervisor has no students")
+
+		return nil, err
+	}
+
+	for _, value := range *students {
+		minInfo, err := p.GetStudentMinInfo(value.StudentId)
+
+		if err != nil {
+			continue
+		}
+
+		dto.StudentsList = append(dto.StudentsList, *minInfo)
 	}
 
 	return &dto, err
 }
 
-// GetSupervisorInfo TODO доделать функцию
 func (p *postgresDb) GetSupervisorInfo(id uuid.UUID) (*supervisor.Info, error) {
-	dto := supervisor.Info{}
-	err := p.postgres.Get(&dto, selectSupervisorByIdQuery, id)
+	var dto supervisor.Info
+	supervisorDTO, err := p.getSupervisor(id)
 
 	if err != nil {
-		dto = supervisor.Info{}
-		err = errors.New("no such supervisor")
+		return nil, err
+	}
+
+	userDTO, err := p.getUser(supervisorDTO.UserId)
+
+	if err != nil {
+		return nil, err
+	}
+
+	dto = supervisor.Info{
+		FullName: supervisorDTO.FullName,
+		Email:    userDTO.Email,
 	}
 
 	return &dto, err

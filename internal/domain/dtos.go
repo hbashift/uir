@@ -23,9 +23,7 @@ type StudentDTO struct {
 	FullName         string    `db:"full_name" json:"full_name"`
 	SpecializationId int       `db:"specialization_id" json:"specialization_id"`
 	PublicationId    uuid.UUID `db:"publication_id" json:"publication_id"`
-	ConferenceId     uuid.UUID `db:"conference_id" json:"conference_id"`
 	SubjectId        uuid.UUID `db:"subject_id" json:"subject_id"`
-	DissertationId   uuid.UUID `db:"dissertation_id" json:"dissertation_id"`
 	StudentExamId    uuid.UUID `db:"student_exam_id" json:"student_exam_id"`
 	SupervisorId     uuid.UUID `db:"supervisor_id" json:"supervisor_id"`
 }
@@ -42,6 +40,8 @@ type DissertationDTO struct {
 	PzPath         string    `db:"pz_path" json:"pz_path"`
 	DissertationId uuid.UUID `db:"dissertation_id" json:"dissertation_id"`
 	StatusId       int       `db:"status_id" json:"status_id"`
+	StudentId      uuid.UUID `db:"student_id"`
+	PublishDate    time.Time `db:"publish_date"`
 }
 
 type PublicationDTO struct {
@@ -52,15 +52,17 @@ type PublicationDTO struct {
 	TypeId     int    `db:"type_id"`
 }
 
-type Type struct {
+type ScientificWorkTypeDTO struct {
 	TypeId   int    `db:"type_id"`
 	TypeName string `db:"type_name"`
 }
 
-type Conference struct {
-	ConferenceName string `db:"name"`
-	ArticleName    string `db:"article_name"`
-	CoAuthors      string `db:"co_authors"`
-	Language       string `db:"language"`
-	TypeId         int    `db:"type_id"`
+type ConferenceDTO struct {
+	ConferenceName string    `db:"name"`
+	ArticleName    string    `db:"article_name"`
+	CoAuthors      string    `db:"co_authors"`
+	Language       string    `db:"language"`
+	TypeId         int       `db:"type_id"`
+	ConferenceId   uuid.UUID `db:"conference_id"`
+	StudentId      uuid.UUID `db:"student_id"`
 }

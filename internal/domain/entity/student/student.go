@@ -19,7 +19,7 @@ type Dissertation struct {
 }
 
 type ScientifiсWork struct {
-	MetaInfo string `json:"scientific_work"`
+	MetaInfo string `json:"scientific_work"` // TODO поставить Conference и Publication
 }
 
 type MinInfo struct {

@@ -1,0 +1,95 @@
+package postgres
+
+import (
+	"github.com/google/uuid"
+	"github.com/hbashift/uir/internal/domain/entity/student"
+)
+
+func (p *postgresDb) GetStudentInfo(id uuid.UUID) (*student.Info, error) {
+	var dto student.Info
+
+	studentDTO, err := p.getStudent(id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	dto = student.Info{
+		FullName:         studentDTO.FullName,
+		StudyingDuration: studentDTO.StudyingDuration,
+		StartDate:        studentDTO.StartDate,
+		EnrollmentOrder:  studentDTO.EnrollmentOrder,
+	}
+
+	err = p.postgres.Get(&dto.Specialization, "SELECT name FROM specialization WHERE specialization_id = $1",
+		studentDTO.SpecializationId)
+
+	if err != nil {
+
+		return nil, err
+	}
+
+	user, err := p.getUser(studentDTO.UserId)
+
+	dto.Email = user.Email
+
+	return &dto, nil
+}
+
+func (p *postgresDb) GetStudentMinInfo(id uuid.UUID) (*student.MinInfo, error) {
+	var dto student.MinInfo
+	studentDTO, err := p.getStudent(id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	supervisorDTO, err := p.getUser(studentDTO.SupervisorId)
+
+	if err != nil {
+		return nil, err
+	}
+
+	dto = student.MinInfo{
+		Name:           studentDTO.FullName,
+		SupervisorName: supervisorDTO.Email, // TODO добавить научруку имя и тут вставлять его имя
+	}
+
+	return &dto, nil
+}
+
+func (p *postgresDb) GetStudentDissertation(id uuid.UUID) (*student.Dissertation, error) {
+	var dto student.Dissertation
+
+	minInfo, err := p.GetStudentMinInfo(id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	studentDTO, err := p.getStudent(id)
+
+	if err != nil {
+		return nil, err
+	}
+
+	dissertationDTO, err := p.getDissertation(studentDTO.DissertationId)
+
+	if err != nil {
+		return nil, err
+	}
+
+	dto = student.Dissertation{
+		MinInfo:          *minInfo,
+		Plan:             studentDTO.PlanPath,
+		TitlePagePath:    dissertationDTO.TitlePath,
+		DissertationPath: dissertationDTO.PzPath,
+	}
+
+	return &dto, nil
+}
+
+func (p *postgresDb) GetStudentScientificWork(id uuid.UUID) (*student.ScientifiсWork, error) {
+	var dto student.ScientifiсWork
+
+}

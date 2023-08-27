@@ -1,8 +1,8 @@
 port: "5432"
 host: "localhost"
 db:
-  username: "postgres"
-  password: "12345"
+  username: "admin"
+  password: "admin"
   host: "localhost"
   port: "5432"
   dbname: "uir"

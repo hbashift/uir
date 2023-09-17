@@ -1,8 +1,9 @@
 package domain
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type SupervisorDTO struct {
@@ -23,9 +24,9 @@ type StudentDTO struct {
 	FullName         string    `db:"full_name" json:"full_name"`
 	SpecializationId int       `db:"specialization_id" json:"specialization_id"`
 	PublicationId    uuid.UUID `db:"publication_id" json:"publication_id"`
-	SubjectId        uuid.UUID `db:"subject_id" json:"subject_id"`
-	StudentExamId    uuid.UUID `db:"student_exam_id" json:"student_exam_id"`
 	SupervisorId     uuid.UUID `db:"supervisor_id" json:"supervisor_id"`
+	Faculty          string    `db:"faculty" json:"faculty"`
+	GroupName        string    `db:"group_name" json:"group_name"`
 }
 
 type UserDTO struct {

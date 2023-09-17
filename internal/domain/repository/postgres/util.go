@@ -10,7 +10,7 @@ import (
 
 func (p *postgresDb) getStudent(id uuid.UUID) (*domain.StudentDTO, error) {
 	dto := domain.StudentDTO{}
-	err := p.postgres.Get(&dto, selectStudentByIdQuery, id)
+	err := p.postgres.Get(&dto, "SELECT * FROM student WHERE student_id = $1", id)
 
 	if err != nil {
 		err = fmt.Errorf("no such student: %w", err)

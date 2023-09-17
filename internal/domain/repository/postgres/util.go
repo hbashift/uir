@@ -2,6 +2,8 @@ package postgres
 
 import (
 	"errors"
+	"fmt"
+
 	"github.com/google/uuid"
 	"github.com/hbashift/uir/internal/domain"
 )
@@ -11,7 +13,7 @@ func (p *postgresDb) getStudent(id uuid.UUID) (*domain.StudentDTO, error) {
 	err := p.postgres.Get(&dto, selectStudentByIdQuery, id)
 
 	if err != nil {
-		err = errors.New("no such student")
+		err = fmt.Errorf("no such student: %w", err)
 
 		return nil, err
 	}

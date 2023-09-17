@@ -26,17 +26,25 @@ func main() {
 		panic(err)
 	}
 
-	path := filepath.Join("migrations", "uir.sql")
+	arr := []string{"uir.sql", "exam.sql", "specialization.sql", "status.sql",
+		"supervisor.sql", "type.sql", "publication.sql", "student.sql",
+		"conference.sql", "dissertation.sql", "student_exam.sql", "subject.sql",
+		"user_class.sql", "client_user.sql"}
 
-	c, ioErr := ioutil.ReadFile(path)
-	if ioErr != nil {
-		panic(ioErr)
+	for _, val := range arr {
+		path := filepath.Join("migrations", val)
+
+		c, ioErr := ioutil.ReadFile(path)
+		if ioErr != nil {
+			panic(ioErr)
+		}
+		sql := string(c)
+		_, err = db.Exec(sql)
+		if err != nil {
+			panic(err)
+		}
 	}
-	sql := string(c)
-	_, err = db.Exec(sql)
-	if err != nil {
-		panic(err)
-	}
+
 	rep := postgres.NewPostgresDB(db)
 
 	student := service.NewStudentService(rep)

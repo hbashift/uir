@@ -1,13 +1,13 @@
-FROM golang:1.19-alpine
-RUN mkdir /app
-ADD . /app
+FROM golang:1.20
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY go.mod ./
-RUN go mod download
+# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
 
-RUN go build -o ./bin/server ./cmd/main/main.go
+COPY . .
+RUN go build -o ./bin/server ./cmd/main/app.go
 
 EXPOSE 8080
 

@@ -15,8 +15,6 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - database
-    environment:
-      - DB_TYPE=postgres
     ports:
       - "8081:8080"
     restart: unless-stopped

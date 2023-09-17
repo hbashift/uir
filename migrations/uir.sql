@@ -1,12 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 15.1
--- Dumped by pg_dump version 15.1
-
--- Started on 2023-08-27 22:05:54
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -22,11 +13,6 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
---
--- TOC entry 225 (class 1259 OID 50516)
--- Name: client_user; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE public.client_user (
     user_id uuid NOT NULL,
     email character varying(128) NOT NULL,
@@ -36,11 +22,6 @@ CREATE TABLE public.client_user (
 
 
 ALTER TABLE public.client_user OWNER TO postgres;
-
---
--- TOC entry 218 (class 1259 OID 50453)
--- Name: conference; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.conference (
     name character varying(400) NOT NULL,
@@ -55,11 +36,6 @@ CREATE TABLE public.conference (
 
 ALTER TABLE public.conference OWNER TO postgres;
 
---
--- TOC entry 224 (class 1259 OID 50504)
--- Name: dissertation; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE public.dissertation (
     title_path character varying(512) NOT NULL,
     pz_path character varying(512) NOT NULL,
@@ -72,11 +48,6 @@ CREATE TABLE public.dissertation (
 
 ALTER TABLE public.dissertation OWNER TO postgres;
 
---
--- TOC entry 216 (class 1259 OID 50443)
--- Name: exam; Type: TABLE; Schema: public; Owner: postgres
---
-
 CREATE TABLE public.exam (
     exam_name character varying(256) NOT NULL,
     exam_id integer NOT NULL
@@ -85,10 +56,6 @@ CREATE TABLE public.exam (
 
 ALTER TABLE public.exam OWNER TO postgres;
 
---
--- TOC entry 223 (class 1259 OID 50492)
--- Name: publication; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.publication (
     publication_id uuid NOT NULL,
@@ -102,10 +69,10 @@ CREATE TABLE public.publication (
 
 ALTER TABLE public.publication OWNER TO postgres;
 
---
--- TOC entry 215 (class 1259 OID 50438)
--- Name: specialization; Type: TABLE; Schema: public; Owner: postgres
---
+
+
+
+
 
 CREATE TABLE public.specialization (
     name character varying(128) NOT NULL,
@@ -115,10 +82,10 @@ CREATE TABLE public.specialization (
 
 ALTER TABLE public.specialization OWNER TO postgres;
 
---
--- TOC entry 221 (class 1259 OID 50477)
--- Name: status; Type: TABLE; Schema: public; Owner: postgres
---
+
+
+
+
 
 CREATE TABLE public.status (
     status_name character varying(128) NOT NULL,
@@ -128,10 +95,10 @@ CREATE TABLE public.status (
 
 ALTER TABLE public.status OWNER TO postgres;
 
---
--- TOC entry 226 (class 1259 OID 50526)
--- Name: student; Type: TABLE; Schema: public; Owner: postgres
---
+
+
+
+
 
 CREATE TABLE public.student (
     user_id uuid NOT NULL,
@@ -153,10 +120,10 @@ CREATE TABLE public.student (
 
 ALTER TABLE public.student OWNER TO postgres;
 
---
--- TOC entry 222 (class 1259 OID 50482)
--- Name: student_exam; Type: TABLE; Schema: public; Owner: postgres
---
+
+
+
+
 
 CREATE TABLE public.student_exam (
     mark integer NOT NULL,
@@ -168,10 +135,10 @@ CREATE TABLE public.student_exam (
 
 ALTER TABLE public.student_exam OWNER TO postgres;
 
---
--- TOC entry 219 (class 1259 OID 50465)
--- Name: subject; Type: TABLE; Schema: public; Owner: postgres
---
+
+
+
+
 
 CREATE TABLE public.subject (
     subject_id uuid NOT NULL,
@@ -184,10 +151,10 @@ CREATE TABLE public.subject (
 
 ALTER TABLE public.subject OWNER TO postgres;
 
---
--- TOC entry 214 (class 1259 OID 50431)
--- Name: supervisor; Type: TABLE; Schema: public; Owner: postgres
---
+
+
+
+
 
 CREATE TABLE public.supervisor (
     user_id uuid NOT NULL,
@@ -198,10 +165,10 @@ CREATE TABLE public.supervisor (
 
 ALTER TABLE public.supervisor OWNER TO postgres;
 
---
--- TOC entry 217 (class 1259 OID 50448)
--- Name: type; Type: TABLE; Schema: public; Owner: postgres
---
+
+
+
+
 
 CREATE TABLE public.type (
     type_id integer NOT NULL,
@@ -211,10 +178,10 @@ CREATE TABLE public.type (
 
 ALTER TABLE public.type OWNER TO postgres;
 
---
--- TOC entry 220 (class 1259 OID 50472)
--- Name: user_class; Type: TABLE; Schema: public; Owner: postgres
---
+
+
+
+
 
 CREATE TABLE public.user_class (
     id integer NOT NULL,
@@ -224,11 +191,11 @@ CREATE TABLE public.user_class (
 
 ALTER TABLE public.user_class OWNER TO postgres;
 
---
--- TOC entry 3417 (class 0 OID 50516)
--- Dependencies: 225
--- Data for Name: client_user; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.client_user (user_id, email, password, id) FROM stdin;
 5f6c58e4-dded-4a77-a073-4384ae18c976	mbenedicto0@google.ru	JMZiTi6rXPxw	1
@@ -304,11 +271,11 @@ cad273fc-3211-4d1a-93f8-a59b2f53077f	RATATATA@email.com	9yhZWzDkUg3h	3
 \.
 
 
---
--- TOC entry 3410 (class 0 OID 50453)
--- Dependencies: 218
--- Data for Name: conference; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.conference (name, conference_id, article_name, co_authors, language, type_id, student_id) FROM stdin;
 Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.	dffec8b1-d22f-4b2e-88a8-1f91075c0f28	Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.	Shaine Coolson	Swahili	1	b3fc9d3d-b884-426e-96fa-3507ce2eea3d
@@ -364,11 +331,11 @@ Fusce consequat.	ec722716-d765-4336-a8a4-c01b8b82e12c	Phasellus in felis. Donec 
 \.
 
 
---
--- TOC entry 3416 (class 0 OID 50504)
--- Dependencies: 224
--- Data for Name: dissertation; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.dissertation (title_path, pz_path, dissertation_id, status_id, student_id, publish_date) FROM stdin;
 PraesentBlanditNam.pdf	AcTellusSemper.mov	b3b03162-87a5-4166-bdc7-c87c6a5a0109	1	feb3388c-2221-40b3-bebe-6345798f6ded	1981-01-23
@@ -424,11 +391,11 @@ AOdio.xls	PhasellusId.ppt	f3efbbd5-32a9-4daf-9000-488ad655334a	1	39862ca6-a8b2-4
 \.
 
 
---
--- TOC entry 3408 (class 0 OID 50443)
--- Dependencies: 216
--- Data for Name: exam; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.exam (exam_name, exam_id) FROM stdin;
 Философия	1
@@ -438,11 +405,11 @@ COPY public.exam (exam_name, exam_id) FROM stdin;
 \.
 
 
---
--- TOC entry 3415 (class 0 OID 50492)
--- Dependencies: 223
--- Data for Name: publication; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.publication (publication_id, name, output_data, num_of_pages, co_authors, type_id) FROM stdin;
 4b7e28d2-8f71-4e22-8b38-de3400859c14	Proin risus. Praesent lectus.	Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.	61	Amberly Herley	3
@@ -498,11 +465,11 @@ b0a4cdc5-2aa8-49ad-acb1-fb898ffad010	Donec vitae nisi.	Maecenas pulvinar loborti
 \.
 
 
---
--- TOC entry 3407 (class 0 OID 50438)
--- Dependencies: 215
--- Data for Name: specialization; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.specialization (name, specialization_id) FROM stdin;
 Машинное обучение	1
@@ -512,11 +479,11 @@ COPY public.specialization (name, specialization_id) FROM stdin;
 \.
 
 
---
--- TOC entry 3413 (class 0 OID 50477)
--- Dependencies: 221
--- Data for Name: status; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.status (status_name, status_id) FROM stdin;
 Доработка	1
@@ -525,11 +492,11 @@ COPY public.status (status_name, status_id) FROM stdin;
 \.
 
 
---
--- TOC entry 3418 (class 0 OID 50526)
--- Dependencies: 226
--- Data for Name: student; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.student (user_id, student_id, start_date, department, enrollment_order, academic_leave, plan_path, studying_duration, full_name, specialization_id, publication_id, supervisor_id, faculty, group_name) FROM stdin;
 53b26510-922e-40ea-8406-fae3f5c1c22e	1860261c-5deb-44d6-80c8-bee65dbb20be	2011-11-02	velit doloremque aliquam ducimus veniam libero molestiae dolorum porro nemo atque consequatur veritatis non necessitatibus optio repudiandae atque et commodi.	18281	f	h:\\sapiente\\dolores\\illo\\molestiae.jpg	2	Ms. Isabel Murphy II	4	0fe2b1ec-9ba1-4f9c-a5f7-8cd4b3f34dfd	d949b8b0-e368-441b-88f9-51f7d824be18	velit doloremque aliquam ducimus veniam libero molestiae dolorum porro nemo atque consequatur veritatis non necessitatibus optio repudiandae atque et commodi.	b20-504
@@ -585,11 +552,11 @@ cc16d00e-4466-4c92-bc75-147cd290384b	c29cdf74-448d-497d-9fb5-822962f9cbf5	1973-1
 \.
 
 
---
--- TOC entry 3414 (class 0 OID 50482)
--- Dependencies: 222
--- Data for Name: student_exam; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.student_exam (mark, date, exam_id, student_id) FROM stdin;
 8	2022-06-30	1	e1507ff5-6503-4e0c-8af4-e392c67bb5ff
@@ -645,11 +612,11 @@ COPY public.student_exam (mark, date, exam_id, student_id) FROM stdin;
 \.
 
 
---
--- TOC entry 3411 (class 0 OID 50465)
--- Dependencies: 219
--- Data for Name: subject; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.subject (subject_id, name, main_teacher, hours, student_id) FROM stdin;
 66ee01a2-cb48-42b6-be70-475704bc99f9	Famotidine	Tamqrah Skottle	29	6808827a-823e-40ff-b6f9-fe2ce2e0a1a5
@@ -705,11 +672,11 @@ a3aa1267-57bd-44bd-8148-104812f69904	Corn Grain	Dre Mewes	24	6808827a-823e-40ff-
 \.
 
 
---
--- TOC entry 3406 (class 0 OID 50431)
--- Dependencies: 214
--- Data for Name: supervisor; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.supervisor (user_id, full_name, supervisor_id) FROM stdin;
 acbe26c4-7469-4745-9304-d6458821f7ff	Lennie Kertzmann	d949b8b0-e368-441b-88f9-51f7d824be18
@@ -735,11 +702,11 @@ d5b51316-3b8f-4437-b10b-d66f47cf128c	Daisy Mraz	c9a1c179-05d2-43da-9a22-2519ad6c
 \.
 
 
---
--- TOC entry 3409 (class 0 OID 50448)
--- Dependencies: 217
--- Data for Name: type; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.type (type_id, type_name) FROM stdin;
 1	РИНЦ
@@ -748,11 +715,11 @@ COPY public.type (type_id, type_name) FROM stdin;
 \.
 
 
---
--- TOC entry 3412 (class 0 OID 50472)
--- Dependencies: 220
--- Data for Name: user_class; Type: TABLE DATA; Schema: public; Owner: postgres
---
+
+
+
+
+
 
 COPY public.user_class (id, name) FROM stdin;
 1	admin
@@ -761,261 +728,261 @@ COPY public.user_class (id, name) FROM stdin;
 \.
 
 
---
--- TOC entry 3243 (class 2606 OID 50520)
--- Name: client_user client_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.client_user
     ADD CONSTRAINT client_user_pkey PRIMARY KEY (user_id);
 
 
---
--- TOC entry 3231 (class 2606 OID 50459)
--- Name: conference conference_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.conference
     ADD CONSTRAINT conference_pkey PRIMARY KEY (conference_id);
 
 
---
--- TOC entry 3241 (class 2606 OID 50510)
--- Name: dissertation dissertation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.dissertation
     ADD CONSTRAINT dissertation_pkey PRIMARY KEY (dissertation_id);
 
 
---
--- TOC entry 3227 (class 2606 OID 50447)
--- Name: exam exam_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.exam
     ADD CONSTRAINT exam_pkey PRIMARY KEY (exam_id);
 
 
---
--- TOC entry 3245 (class 2606 OID 50538)
--- Name: student publication_id_must_be_distinct; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student
     ADD CONSTRAINT publication_id_must_be_distinct UNIQUE (publication_id);
 
 
---
--- TOC entry 3239 (class 2606 OID 50498)
--- Name: publication publication_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.publication
     ADD CONSTRAINT publication_pkey PRIMARY KEY (publication_id);
 
 
---
--- TOC entry 3225 (class 2606 OID 50442)
--- Name: specialization specialization_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.specialization
     ADD CONSTRAINT specialization_pkey PRIMARY KEY (specialization_id);
 
 
---
--- TOC entry 3237 (class 2606 OID 50481)
--- Name: status status_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.status
     ADD CONSTRAINT status_pkey PRIMARY KEY (status_id);
 
 
---
--- TOC entry 3247 (class 2606 OID 50532)
--- Name: student student_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student
     ADD CONSTRAINT student_pkey PRIMARY KEY (student_id);
 
 
---
--- TOC entry 3249 (class 2606 OID 50536)
--- Name: student student_plan_path_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student
     ADD CONSTRAINT student_plan_path_key UNIQUE (plan_path);
 
 
---
--- TOC entry 3251 (class 2606 OID 50534)
--- Name: student student_user_id_must_be_distinct; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student
     ADD CONSTRAINT student_user_id_must_be_distinct UNIQUE (user_id);
 
 
---
--- TOC entry 3233 (class 2606 OID 50471)
--- Name: subject subject_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.subject
     ADD CONSTRAINT subject_pkey PRIMARY KEY (subject_id);
 
 
---
--- TOC entry 3221 (class 2606 OID 50435)
--- Name: supervisor supervisor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.supervisor
     ADD CONSTRAINT supervisor_pkey PRIMARY KEY (supervisor_id);
 
 
---
--- TOC entry 3229 (class 2606 OID 50452)
--- Name: type type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.type
     ADD CONSTRAINT type_pkey PRIMARY KEY (type_id);
 
 
---
--- TOC entry 3235 (class 2606 OID 50476)
--- Name: user_class user_class_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.user_class
     ADD CONSTRAINT user_class_pkey PRIMARY KEY (id);
 
 
---
--- TOC entry 3223 (class 2606 OID 50437)
--- Name: supervisor user_id_must_be_distinct; Type: CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.supervisor
     ADD CONSTRAINT user_id_must_be_distinct UNIQUE (user_id);
 
 
---
--- TOC entry 3260 (class 2606 OID 50521)
--- Name: client_user client_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.client_user
     ADD CONSTRAINT client_user_id_fkey FOREIGN KEY (id) REFERENCES public.user_class(id);
 
 
---
--- TOC entry 3252 (class 2606 OID 50934)
--- Name: conference conference_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.conference
     ADD CONSTRAINT conference_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.student(student_id);
 
 
---
--- TOC entry 3253 (class 2606 OID 50460)
--- Name: conference conference_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.conference
     ADD CONSTRAINT conference_type_id_fkey FOREIGN KEY (type_id) REFERENCES public.type(type_id);
 
 
---
--- TOC entry 3258 (class 2606 OID 50511)
--- Name: dissertation dissertation_status_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.dissertation
     ADD CONSTRAINT dissertation_status_id_fkey FOREIGN KEY (status_id) REFERENCES public.status(status_id);
 
 
---
--- TOC entry 3259 (class 2606 OID 50939)
--- Name: dissertation dissertation_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.dissertation
     ADD CONSTRAINT dissertation_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.student(student_id);
 
 
---
--- TOC entry 3257 (class 2606 OID 50499)
--- Name: publication publication_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.publication
     ADD CONSTRAINT publication_type_id_fkey FOREIGN KEY (type_id) REFERENCES public.type(type_id);
 
 
---
--- TOC entry 3255 (class 2606 OID 50487)
--- Name: student_exam student_exam_exam_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student_exam
     ADD CONSTRAINT student_exam_exam_id_fkey FOREIGN KEY (exam_id) REFERENCES public.exam(exam_id);
 
 
---
--- TOC entry 3256 (class 2606 OID 50958)
--- Name: student_exam student_exam_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student_exam
     ADD CONSTRAINT student_exam_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.student(student_id);
 
 
---
--- TOC entry 3261 (class 2606 OID 50550)
--- Name: student student_publication_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student
     ADD CONSTRAINT student_publication_id_fkey FOREIGN KEY (publication_id) REFERENCES public.publication(publication_id);
 
 
---
--- TOC entry 3262 (class 2606 OID 50545)
--- Name: student student_specialization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student
     ADD CONSTRAINT student_specialization_id_fkey FOREIGN KEY (specialization_id) REFERENCES public.specialization(specialization_id);
 
 
---
--- TOC entry 3263 (class 2606 OID 50929)
--- Name: student student_supervisor_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.student
     ADD CONSTRAINT student_supervisor_id_fkey FOREIGN KEY (supervisor_id) REFERENCES public.supervisor(supervisor_id);
 
 
---
--- TOC entry 3254 (class 2606 OID 50953)
--- Name: subject subject_student_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
+
+
+
+
 
 ALTER TABLE ONLY public.subject
     ADD CONSTRAINT subject_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.student(student_id);
 
 
--- Completed on 2023-08-27 22:05:54
 
---
--- PostgreSQL database dump complete
---
+
+
+
+
 

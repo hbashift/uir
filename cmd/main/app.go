@@ -1,6 +1,9 @@
 package main
 
 import (
+	"io/ioutil"
+	"path/filepath"
+
 	"github.com/hbashift/uir/internal/domain/repository/postgres"
 	"github.com/hbashift/uir/internal/handler"
 	"github.com/hbashift/uir/internal/service"
@@ -23,6 +26,17 @@ func main() {
 		panic(err)
 	}
 
+	path := filepath.Join("migrations", "uir.sql")
+
+	c, ioErr := ioutil.ReadFile(path)
+	if ioErr != nil {
+		panic(ioErr)
+	}
+	sql := string(c)
+	_, err = db.Exec(sql)
+	if err != nil {
+		panic(err)
+	}
 	rep := postgres.NewPostgresDB(db)
 
 	student := service.NewStudentService(rep)

@@ -84,14 +84,22 @@ func (s *studentHandler) GetScientificWork(ctx *gin.Context) {
 }
 
 func (s *studentHandler) Authorize(ctx *gin.Context) {
-	login := ctx.Param("login")
-	password := ctx.Param("password")
+	dto := AuthorizationDTO{}
+	if err := ctx.ShouldBindJSON(&dto); err != nil {
+		ctx.AbortWithError(http.StatusInternalServerError, err)
+		return
+	}
 
-	authorizeData, err := s.service.Authorize(login, password)
+	authorizeData, err := s.service.Authorize(dto.Login, dto.Password)
 	if err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
 
 	ctx.IndentedJSON(http.StatusOK, authorizeData)
+}
+
+type AuthorizationDTO struct {
+	Login    string `json:"login,omitempty"`
+	Password string `json:"password,omitempty"`
 }

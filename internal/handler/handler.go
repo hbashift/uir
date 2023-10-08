@@ -37,7 +37,7 @@ func InitRoutes(student StudentHandler, supervisor SupervisorHandler) *gin.Engin
 	router.GET("/students/science/:id", student.GetScientificWork)
 	router.GET("/supervisor/info/:id", supervisor.GetInfo)
 	router.GET("/supervisor/students/:id", supervisor.GetStudents)
-	router.GET("/authorize/:login/:password")
+	router.GET("/authorize", student.Authorize)
 
 	return router
 }

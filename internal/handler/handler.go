@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/hbashift/uir/internal/service"
 )
@@ -29,7 +30,9 @@ func NewSupervisorHandler(service service.SupervisorService) SupervisorHandler {
 }
 
 func InitRoutes(student StudentHandler, supervisor SupervisorHandler) *gin.Engine {
-	router := gin.Default()
+	router := gin.New()
+
+	router.Use(gin.Recovery(), gin.Logger(), cors.Default())
 
 	router.GET("/students/info/:id", student.GetInfo)
 	router.GET("/students/min-info/:id", student.GetMinInfo)

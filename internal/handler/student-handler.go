@@ -4,7 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/martian/log"
 	"github.com/hbashift/uir/internal/service"
+	"github.com/pkg/errors"
 )
 
 type studentHandler struct {
@@ -86,13 +88,16 @@ func (s *studentHandler) GetScientificWork(ctx *gin.Context) {
 func (s *studentHandler) Authorize(ctx *gin.Context) {
 	dto := AuthorizationDTO{}
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
-		ctx.AbortWithError(http.StatusInternalServerError, err)
+		ctx.AbortWithError(http.StatusInternalServerError, errors.Wrap(err, "parsing error"))
+		log.Errorf("couldn't bind JSON: %s", err.Error())
 		return
 	}
 
 	authorizeData, err := s.service.Authorize(dto.Login, dto.Password)
 	if err != nil {
-		ctx.AbortWithError(http.StatusBadRequest, err)
+		ctx.AbortWithError(http.StatusBadRequest, errors.Wrap(err, "could not authorize"))
+		log.Errorf("wrong credentials: %s", err.Error())
+
 		return
 	}
 

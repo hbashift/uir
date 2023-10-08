@@ -34,4 +34,5 @@ type TeachingLoad struct {
 type AuthorizationDTO struct {
 	UserID   string `json:"user_id"`
 	UserType string `json:"user_type"`
+	Token    string `json:"access_token"`
 }

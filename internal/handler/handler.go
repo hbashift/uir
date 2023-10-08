@@ -40,7 +40,6 @@ func InitRoutes(student StudentHandler, supervisor SupervisorHandler) *gin.Engin
 		ExposeHeaders:    []string{"Content-Length", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Access-Control-Allow-Headers", "Access-Control-Allow-Methods"},
 		AllowCredentials: true,
 		AllowAllOrigins:  true,
-		AllowOriginFunc:  func(origin string) bool { return true },
 		MaxAge:           12 * time.Hour,
 	}))
 

@@ -12,7 +12,7 @@ type StudentService interface {
 	GetDissertation(id uuid.UUID) (*student.Dissertation, error)
 	GetScientificWork(id uuid.UUID) (*student.ScientifiсWork, error)
 	// TODO функции редактирования информации
-	Authorize(login, password string) (*student.AuthorizationDTO, error)
+	Authorize(login, password string) (*student.Authorization, error)
 }
 
 type studentService struct {
@@ -63,6 +63,6 @@ func (s *studentService) GetScientificWork(id uuid.UUID) (*student.ScientifiсWo
 	return scientificWork, nil
 }
 
-func (s *studentService) Authorize(login, password string) (*student.AuthorizationDTO, error) {
+func (s *studentService) Authorize(login, password string) (*student.Authorization, error) {
 	return s.db.Authorization(login, password)
 }

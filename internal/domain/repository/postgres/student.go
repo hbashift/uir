@@ -117,16 +117,17 @@ func (p *postgresDb) GetStudentScientificWork(id uuid.UUID) (*student.Scientifi—
 	return &dto, nil
 }
 
-func (p *postgresDb) Authorization(login, password string) (*student.AuthorizationDTO, error) {
+func (p *postgresDb) Authorization(login, password string) (*student.Authorization, error) {
 	dto := ClientUser{}
 	err := p.postgres.Get(&dto, "SELECT * FROM client_user WHERE email = $1 and password = $2", login, password)
 	if err != nil {
 		return nil, errors.New("wrong login or password")
 	}
 
-	return &student.AuthorizationDTO{
+	return &student.Authorization{
 		UserID:   dto.UserID,
 		UserType: dto.ID,
+		Token:    uuid.NewString(),
 	}, nil
 }
 

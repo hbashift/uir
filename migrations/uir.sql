@@ -1,4 +1,4 @@
-create table public.exam
+create table if not exists public.exam
 (
     exam_name varchar(256) not null,
     exam_id   integer      not null
@@ -8,7 +8,7 @@ create table public.exam
 alter table public.exam
     owner to postgres;
 
-create table public.specialization
+create table if not exists public.specialization
 (
     name              varchar(128) not null,
     specialization_id integer      not null
@@ -18,7 +18,7 @@ create table public.specialization
 alter table public.specialization
     owner to postgres;
 
-create table public.status
+create table if not exists public.status
 (
     status_name varchar(128) not null,
     status_id   integer      not null
@@ -28,7 +28,7 @@ create table public.status
 alter table public.status
     owner to postgres;
 
-create table public.supervisor
+create table if not exists public.supervisor
 (
     user_id       uuid         not null
         constraint user_id_must_be_distinct
@@ -41,7 +41,7 @@ create table public.supervisor
 alter table public.supervisor
     owner to postgres;
 
-create table public.type
+create table if not exists public.type
 (
     type_id   integer      not null
         primary key,
@@ -51,7 +51,7 @@ create table public.type
 alter table public.type
     owner to postgres;
 
-create table public.publication
+create table if not exists public.publication
 (
     publication_id uuid         not null
         primary key,
@@ -66,7 +66,7 @@ create table public.publication
 alter table public.publication
     owner to postgres;
 
-create table public.student
+create table if not exists public.student
 (
     user_id           uuid         not null
         constraint student_user_id_must_be_distinct
@@ -96,7 +96,7 @@ create table public.student
 alter table public.student
     owner to postgres;
 
-create table public.conference
+create table if not exists public.conference
 (
     name          varchar(400) not null,
     conference_id uuid         not null
@@ -113,7 +113,7 @@ create table public.conference
 alter table public.conference
     owner to postgres;
 
-create table public.dissertation
+create table if not exists public.dissertation
 (
     title_path      varchar(512) not null,
     pz_path         varchar(512) not null,
@@ -129,7 +129,7 @@ create table public.dissertation
 alter table public.dissertation
     owner to postgres;
 
-create table public.student_exam
+create table if not exists public.student_exam
 (
     mark       integer not null,
     date       date    not null,
@@ -142,7 +142,7 @@ create table public.student_exam
 alter table public.student_exam
     owner to postgres;
 
-create table public.subject
+create table if not exists public.subject
 (
     subject_id   uuid         not null
         primary key,
@@ -156,7 +156,7 @@ create table public.subject
 alter table public.subject
     owner to postgres;
 
-create table public.user_class
+create table if not exists public.user_class
 (
     id   integer      not null
         primary key,
@@ -166,7 +166,7 @@ create table public.user_class
 alter table public.user_class
     owner to postgres;
 
-create table public.client_user
+create table if not exists public.client_user
 (
     user_id  uuid         not null
         primary key,

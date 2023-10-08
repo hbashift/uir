@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"time"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/hbashift/uir/internal/service"
@@ -30,9 +32,17 @@ func NewSupervisorHandler(service service.SupervisorService) SupervisorHandler {
 }
 
 func InitRoutes(student StudentHandler, supervisor SupervisorHandler) *gin.Engine {
-	router := gin.New()
+	router := gin.Default()
 
-	router.Use(gin.Recovery(), gin.Logger(), cors.Default())
+	router.Use(cors.New(cors.Config{
+		AllowMethods:     []string{"PUT", "PATCH", "POST", "GET", "DELETE"},
+		AllowHeaders:     []string{"Origin", "Authorization", "Content-Type", "Accept-Encoding"},
+		ExposeHeaders:    []string{"Content-Length", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Access-Control-Allow-Headers", "Access-Control-Allow-Methods"},
+		AllowCredentials: true,
+		AllowAllOrigins:  true,
+		AllowOriginFunc:  func(origin string) bool { return true },
+		MaxAge:           12 * time.Hour,
+	}))
 
 	router.GET("/students/info/:id", student.GetInfo)
 	router.GET("/students/min-info/:id", student.GetMinInfo)

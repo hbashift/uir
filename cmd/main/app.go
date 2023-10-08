@@ -1,6 +1,9 @@
 package main
 
 import (
+	"io/ioutil"
+	"path/filepath"
+
 	"github.com/hbashift/uir/internal/domain/repository/postgres"
 	"github.com/hbashift/uir/internal/handler"
 	"github.com/hbashift/uir/internal/service"
@@ -23,24 +26,24 @@ func main() {
 		panic(err)
 	}
 
-	//arr := []string{"uir.sql", "exam.sql", "specialization.sql", "status.sql",
-	//	"supervisor.sql", "type.sql", "publication.sql", "student.sql",
-	//	"conference.sql", "dissertation.sql", "student_exam.sql", "subject.sql",
-	//	"user_class.sql", "client_user.sql"}
-	//
-	//for _, val := range arr {
-	//	path := filepath.Join("migrations", val)
-	//
-	//	c, ioErr := ioutil.ReadFile(path)
-	//	if ioErr != nil {
-	//		panic(ioErr)
-	//	}
-	//	sql := string(c)
-	//	_, err = db.Exec(sql)
-	//	if err != nil {
-	//		panic(err)
-	//	}
-	//}
+	arr := []string{"uir.sql", "exam.sql", "specialization.sql", "status.sql",
+		"supervisor.sql", "type.sql", "publication.sql", "student.sql",
+		"conference.sql", "dissertation.sql", "student_exam.sql", "subject.sql",
+		"user_class.sql", "client_user.sql"}
+
+	for _, val := range arr {
+		path := filepath.Join("migrations", val)
+
+		c, ioErr := ioutil.ReadFile(path)
+		if ioErr != nil {
+			panic(ioErr)
+		}
+		sql := string(c)
+		_, err = db.Exec(sql)
+		if err != nil {
+			panic(err)
+		}
+	}
 
 	rep := postgres.NewPostgresDB(db)
 

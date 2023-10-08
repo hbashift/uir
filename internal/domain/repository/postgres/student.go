@@ -2,6 +2,8 @@ package postgres
 
 import (
 	"encoding/json"
+	"errors"
+
 	"github.com/google/uuid"
 	"github.com/hbashift/uir/internal/domain/entity/student"
 )
@@ -113,4 +115,28 @@ func (p *postgresDb) GetStudentScientificWork(id uuid.UUID) (*student.ScientifiÑ
 	dto = student.ScientifiÑWork{MetaInfo: string(b)}
 
 	return &dto, nil
+}
+
+func (p *postgresDb) Authorization(login, password string) (*student.AuthorizationDTO, error) {
+	dto := []ClientUser{}
+	err := p.postgres.Select(&dto, "SELECT * FROM client_user WHERE email = $1 and password = $2", login, password)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(dto) > 0 || len(dto) == 0 {
+		return nil, errors.New("wrong login or password")
+	}
+
+	return &student.AuthorizationDTO{
+		UserID:   dto[0].UserID,
+		UserType: dto[0].ID,
+	}, nil
+}
+
+type ClientUser struct {
+	UserID   string `db:"user_id"`
+	Email    string `db:"email"`
+	Password string `db:"password"`
+	ID       string `db:"id"`
 }

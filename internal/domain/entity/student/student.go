@@ -30,3 +30,8 @@ type MinInfo struct {
 type TeachingLoad struct {
 	MetaInfo string `json:"teaching_load"`
 }
+
+type AuthorizationDTO struct {
+	UserID   string `json:"user_id"`
+	UserType string `json:"user_type"`
+}

@@ -10,6 +10,7 @@ type StudentHandler interface {
 	GetMinInfo(ctx *gin.Context)
 	GetDissertation(ctx *gin.Context)
 	GetScientificWork(ctx *gin.Context)
+	Authorize(ctx *gin.Context)
 	// TODO функции редактирования информации
 }
 
@@ -36,6 +37,7 @@ func InitRoutes(student StudentHandler, supervisor SupervisorHandler) *gin.Engin
 	router.GET("/students/science/:id", student.GetScientificWork)
 	router.GET("/supervisor/info/:id", supervisor.GetInfo)
 	router.GET("/supervisor/students/:id", supervisor.GetStudents)
+	router.GET("/authorize/:login/:password")
 
 	return router
 }

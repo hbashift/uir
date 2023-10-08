@@ -13,4 +13,5 @@ type Repository interface {
 	GetStudentScientificWork(id uuid.UUID) (*student.ScientifiсWork, error)
 	GetSupervisorInfo(id uuid.UUID) (*supervisor.Info, error)
 	GetSupervisorsStudents(id uuid.UUID) (*supervisor.Students, error)
+	Authorization(login, password string) (*student.AuthorizationDTO, error)
 }

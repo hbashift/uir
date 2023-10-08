@@ -1,9 +1,10 @@
 package handler
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/hbashift/uir/internal/service"
-	"net/http"
 )
 
 type studentHandler struct {
@@ -80,4 +81,17 @@ func (s *studentHandler) GetScientificWork(ctx *gin.Context) {
 	}
 
 	ctx.IndentedJSON(http.StatusOK, scientificWork)
+}
+
+func (s *studentHandler) Authorize(ctx *gin.Context) {
+	login := ctx.Param("login")
+	password := ctx.Param("password")
+
+	authorizeData, err := s.service.Authorize(login, password)
+	if err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	ctx.IndentedJSON(http.StatusOK, authorizeData)
 }
